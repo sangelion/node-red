@@ -1,0 +1,10 @@
+{
+  "name": "node-red-numato",
+  "version": "0.0.1",
+  "description": "A node-RED for numato analog and digital input output",
+  "node-red": {
+    "nodes": {
+      "numato-aio": "numato-aio.js"
+    }
+  }
+}

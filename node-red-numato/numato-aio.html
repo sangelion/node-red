@@ -1,0 +1,58 @@
+<script type="text/javascript">
+    RED.nodes.registerType('numato-aio',{
+        category: 'numato',
+        color: '#fff0f0',
+        paletteLabel: 'analog',
+        defaults: {
+            name: {value:""},
+            serialport: {value:"", required: true},
+            pin:  {value:"", required: true},
+            interval: {value:"100", required: true, validate:RED.validators.number()}
+        },
+        inputs:0,
+        outputs:1,
+        icon: "arrow.png",
+        label: function() {
+            return this.name||"Analog_"+this.pin;
+        },
+        labelStyle: function() {
+            return this.name?"node_label_italic":"";
+        }
+    });
+</script>
+
+
+<script type="text/x-red" data-template-name="numato-aio">
+    <div class="form-row">
+        <label for="node-input-pin"><i class="fa fa-circle-o"></i> Pin</label>
+        <select type="text" id="node-input-pin" style="width: 250px;">
+            <option value="1">ADC1</option>
+            <option value="2">ADC2</option>
+            <option value="3">ADC3</option>
+            <option value="4">ADC4</option>
+            <option value="5">ADC5</option>
+            <option value="6">ADC6</option>
+            <option value="7">ADC7</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-serialport"><i class="fa fa-circle"></i> SerialPort</label>
+        <input type="text" id="node-input-serialport" placeholder="example: /dev/ttyACM0" style="width: 250px;">
+    </div>
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name" style="width: 250px;">
+    </div>
+    <div class="form-row">
+       <label for="node-input-name"><i class="fa fa-clock-o"></i> Interval</label>
+        <input type="text" id="node-input-interval" placeholder="Interval" style="width:250px;"> mS
+    </div>
+</script>
+
+
+<script type="text/x-red" data-help-name="numato-aio">
+    <p>Numato GPIO32 Analog</p>
+    <p>Pin numbers 1 to 7 maps to ADC1 to ADC7</p>
+    <p>The <b>msg.payload</b> contains the value (0 or 1), and <b>msg.topic</b>
+    contains "analog/{print pin number}".</p>
+</script>
